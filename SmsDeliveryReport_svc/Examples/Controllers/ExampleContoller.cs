@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace SmsDeliveryReport_svc.Examples.Controllers
 {
-    [Authorize(Policy = Permission.Base)]
+    //[Authorize(Policy = Permission.Base)]
     [Route("/api/Example")]
     public class ExampleContoller : ControllerBase
     {
@@ -24,7 +24,7 @@ namespace SmsDeliveryReport_svc.Examples.Controllers
 
         //[Authorize(Policy =Permission.TestPermission)]
         //[Authorize(Policy =Permission.TestPermission2)]
-        [ClaimPermission(Permission.Test, Permission.Test2)]
+        //[ClaimPermission(Permission.Test, Permission.Test2)]
         [HttpGet("Get")]
         public IActionResult Get()
         {

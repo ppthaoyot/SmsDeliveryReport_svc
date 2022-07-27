@@ -16,6 +16,7 @@ using SmsDeliveryReport_svc.Examples.Clients;
 using SmsDeliveryReport_svc.Examples.Configurations;
 using SmsDeliveryReport_svc.Examples.Consumers;
 using SmsDeliveryReport_svc.Examples.Contracts;
+using SmsDeliveryReport_svc.Examples.Services;
 using SmsDeliveryReport_svc.Filters;
 using SmsDeliveryReport_svc.HostedServices;
 using SmsDeliveryReport_svc.Middlewares;
@@ -74,6 +75,7 @@ namespace SmsDeliveryReport_svc
             // ใช้สำหรับข้อมูล Login
             services.AddScoped<ILoginDetailServices, LoginDetailServices>();
 
+            services.AddScoped<IExampleServices, ExampleServices>();
             // TODO: เมื่อเขียน Service และ Interface ของ Service ให้ใส่ที่นี้
             // services.AddSingleton // ใช้เมื่อใช้ Instance เดียวทั้ง Project
             // services.AddScoped // ใช้เมื่อแยก Instance ตาม User
@@ -83,8 +85,11 @@ namespace SmsDeliveryReport_svc
             // วิธีการเขียน RestSharp
             // https://github.com/SiamsmileDev/DevKnowledgeBase/blob/develop/Example%20Code/CSharp/RestSharp%20Example.md
 
-            // services.AddSingleton<ShortLinkClient>();
-            // services.AddSingleton<SendSmsClient>();
+            services.AddSingleton<ShortLinkClient>();
+            services.AddSingleton<SendSmsClient>();
+
+            // Options *
+            services.Configure<ServiceURL>(configuration.GetSection("ServiceURL"));
 
             return services;
         }

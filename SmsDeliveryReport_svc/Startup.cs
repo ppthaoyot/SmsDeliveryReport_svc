@@ -9,6 +9,7 @@ using Newtonsoft.Json;
 using Prometheus;
 using SmsDeliveryReport_svc.Configurations;
 using SmsDeliveryReport_svc.Data;
+using SmsDeliveryReport_svc.Examples.Configurations;
 using SmsDeliveryReport_svc.Filters;
 using SmsDeliveryReport_svc.Helpers;
 using SmsDeliveryReport_svc.Middlewares;
@@ -29,6 +30,7 @@ namespace SmsDeliveryReport_svc
             OAuthConfiguration = configuration.GetSection("OAuth")?.Get<OAuthSetting>();
             MasstransitConfiguration = configuration.GetSection("Masstransit")?.Get<MasstransitSetting>();
             QuartzConfiguration = configuration.GetSection("Quartz")?.Get<QuartzSetting>();
+            ServiceURL = configuration.GetSection("ServiceURL")?.Get<ServiceURL>();
         }
 
         private IConfiguration Configuration { get; }
@@ -36,6 +38,7 @@ namespace SmsDeliveryReport_svc
         private OAuthSetting OAuthConfiguration { get; }
         private MasstransitSetting MasstransitConfiguration { get; }
         private QuartzSetting QuartzConfiguration { get; }
+        private ServiceURL ServiceURL { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
